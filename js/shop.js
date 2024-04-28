@@ -95,7 +95,6 @@ function buy(id) {
             break;
         }
     }
-    calculateTotal();
 }
 
 // Exercise 2
@@ -104,12 +103,22 @@ function cleanCart() {
     cartElements = 0;
     const $totalCart = document.getElementById("count_product");
     $totalCart.innerText = cartElements;
+
+    //Delete all cart elements TODO
+    const $bodyTable = document.getElementById("cart_list");
+    const $totalResult = document.getElementById("total_price");
+    $bodyTable.innerHTML = "";
+    $totalResult.innerText = "0.00";
 }
 
 // Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
-    total = cart.reduce((acc, val) => acc + val.price * val.quantity, 0);
+    total = cart.reduce((acc, item) => {
+        let totalVal = 0;
+        item.hasOwnProperty("subtotalWithDiscount") ? (totalVal = item.subtotalWithDiscount) : (totalVal = item.price * item.quantity);
+        return acc + totalVal;
+    }, 0);
 }
 
 // Exercise 4
@@ -138,5 +147,8 @@ function printCart() {
 function removeFromCart(id) {}
 
 function open_modal() {
+    applyPromotionsCart(cart);
+    calculateTotal();
+    console.log({ cart, total });
     printCart();
 }
