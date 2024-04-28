@@ -139,6 +139,21 @@ function applyPromotionsCart(cartElements) {
 // Exercise 5
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
+    const list = [];
+    const $bodyTable = document.getElementById("cart_list");
+    const $totalResult = document.getElementById("total_price");
+    cart.forEach((item) => {
+        const itemTotal = item.hasOwnProperty("subtotalWithDiscount") ? (totalVal = item.subtotalWithDiscount) : (totalVal = item.price * item.quantity);
+        const itemChild = `<tr>
+								<th scope="row">${item.name}</th>
+								<td>$${item.price}</td>
+								<td>${item.quantity}</td>
+								<td>$${itemTotal.toFixed(2)}</td>
+							</tr>`;
+        list.push(itemChild);
+    });
+    $bodyTable.innerHTML = list.join("");
+    $totalResult.innerText = total.toFixed(2);
 }
 
 // ** Nivell II **
@@ -149,6 +164,5 @@ function removeFromCart(id) {}
 function open_modal() {
     applyPromotionsCart(cart);
     calculateTotal();
-    console.log({ cart, total });
     printCart();
 }
