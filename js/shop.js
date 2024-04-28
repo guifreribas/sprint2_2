@@ -73,6 +73,7 @@ const products = [
 const cart = [];
 
 let total = 0;
+let cartElements = 0;
 
 // Exercise 1
 function buy(id) {
@@ -88,25 +89,27 @@ function buy(id) {
             } else {
                 productInCart.quantity++;
             }
-            total++;
+            cartElements++;
             const $totalCart = document.getElementById("count_product");
-            $totalCart.innerText = total;
+            $totalCart.innerText = cartElements;
             break;
         }
     }
+    calculateTotal();
 }
 
 // Exercise 2
 function cleanCart() {
     cart.length = 0;
-    total = 0;
+    cartElements = 0;
     const $totalCart = document.getElementById("count_product");
-    $totalCart.innerText = total;
+    $totalCart.innerText = cartElements;
 }
 
 // Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
+    total = cart.reduce((acc, val) => acc + val.price * val.quantity, 0);
 }
 
 // Exercise 4
