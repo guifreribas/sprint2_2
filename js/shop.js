@@ -78,6 +78,22 @@ let total = 0;
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array
+    for (const product of products) {
+        if (product.id === id) {
+            const productInCart = cart.find((item) => item.id === product.id);
+            if (!productInCart) {
+                const productToAddToCart = { ...product };
+                productToAddToCart.quantity = 1;
+                cart.push(productToAddToCart);
+            } else {
+                productInCart.quantity++;
+            }
+            total++;
+            const $totalCart = document.getElementById("count_product");
+            $totalCart.innerText = total;
+            break;
+        }
+    }
 }
 
 // Exercise 2
