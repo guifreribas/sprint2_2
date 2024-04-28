@@ -97,7 +97,12 @@ function buy(id) {
 }
 
 // Exercise 2
-function cleanCart() {}
+function cleanCart() {
+    cart.length = 0;
+    total = 0;
+    const $totalCart = document.getElementById("count_product");
+    $totalCart.innerText = total;
+}
 
 // Exercise 3
 function calculateTotal() {
