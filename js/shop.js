@@ -113,8 +113,18 @@ function calculateTotal() {
 }
 
 // Exercise 4
-function applyPromotionsCart() {
+function applyPromotionsCart(cartElements) {
     // Apply promotions to each item in the array "cart"
+    cartElements.forEach((item, idx) => {
+        if (item.hasOwnProperty("offer")) {
+            if (item.quantity >= item.offer.number) {
+                const total = item.price * item.quantity;
+                const subtotalWithDiscount = total - (total * item.offer.percent) / 100;
+                cartElements[idx].subtotalWithDiscount = subtotalWithDiscount;
+            }
+        }
+    });
+    return cartElements;
 }
 
 // Exercise 5
