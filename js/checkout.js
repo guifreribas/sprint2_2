@@ -5,10 +5,9 @@ function preventRefreshForm(e) {
     e.preventDefault();
     validate();
 }
-$form.addEventListener("submit", preventRefreshForm);
+if ($form) $form.addEventListener("submit", preventRefreshForm);
 
 function validate() {
-    console.log("validate");
     //Get fields
     const fName = document.getElementById("fName");
     const fEmail = document.getElementById("fEmail");
