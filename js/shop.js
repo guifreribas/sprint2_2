@@ -63,14 +63,18 @@ const products = [
         type: "clothes",
     },
 ];
-
+const CART_COUNT_ACTIONS = {
+    ADD: "ADD",
+    SUBSTRACT: "SUBSTRACT",
+    RESET: "RESET",
+};
 // => Reminder, it's extremely important that you debug your code.
 // ** It will save you a lot of time and frustration!
 // ** You'll understand the code better than with console.log(), and you'll also find errors faster.
 // ** Don't hesitate to seek help from your peers or your mentor if you still struggle with debugging.
 
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
-const cart = [];
+let cart = [];
 
 let total = 0;
 let cartElements = 0;
@@ -89,9 +93,7 @@ function buy(id) {
             } else {
                 productInCart.quantity++;
             }
-            cartElements++;
-            const $totalCart = document.getElementById("count_product");
-            $totalCart.innerText = cartElements;
+            updateCartCount(CART_COUNT_ACTIONS.ADD);
             break;
         }
     }
@@ -100,9 +102,7 @@ function buy(id) {
 // Exercise 2
 function cleanCart() {
     cart.length = 0;
-    cartElements = 0;
-    const $totalCart = document.getElementById("count_product");
-    $totalCart.innerText = cartElements;
+    updateCartCount(CART_COUNT_ACTIONS.RESET);
 
     //Delete all cart elements TODO
     const $bodyTable = document.getElementById("cart_list");
@@ -112,7 +112,7 @@ function cleanCart() {
 }
 
 // Exercise 3
-function calculateTotal() {
+function calculateTotal(cart) {
     // Calculate total price of the cart using the "cartList" array
     total = cart.reduce((acc, item) => {
         let totalVal = 0;
@@ -137,18 +137,20 @@ function applyPromotionsCart(cartElements) {
 }
 
 // Exercise 5
-function printCart() {
+function printCart(cart) {
     // Fill the shopping cart modal manipulating the shopping cart dom
     const list = [];
     const $bodyTable = document.getElementById("cart_list");
     const $totalResult = document.getElementById("total_price");
+    $bodyTable.innerHTML = null;
     cart.forEach((item) => {
         const itemTotal = item.hasOwnProperty("subtotalWithDiscount") ? (totalVal = item.subtotalWithDiscount) : (totalVal = item.price * item.quantity);
         const itemChild = `<tr>
-								<th scope="row">${item.name}</th>
+								<th scope="row" >${item.name}</th>
 								<td>$${item.price}</td>
 								<td>${item.quantity}</td>
 								<td>$${itemTotal.toFixed(2)}</td>
+                                <td><button onclick="removeFromCart('${item.id}')">Eliminar</button></td>
 							</tr>`;
         list.push(itemChild);
     });
@@ -159,10 +161,37 @@ function printCart() {
 // ** Nivell II **
 
 // Exercise 7
-function removeFromCart(id) {}
+function removeFromCart(itemId) {
+    const id = Number(itemId);
+    const oldCart = [...cart];
+    cart = oldCart
+        .map((item) => {
+            if (item.id !== id) return item;
+            if (item.id === id && item.quantity > 1) {
+                item.quantity -= 1;
+                updateCartCount(CART_COUNT_ACTIONS.SUBSTRACT);
+                if (item.hasOwnProperty("subtotalWithDiscount") && item.quantity < item.offer.number) delete item.subtotalWithDiscount;
+                return { ...item, quantity: item.quantity };
+            }
+            return null;
+        })
+        .filter((item) => item);
+    applyPromotionsCart(cart);
+    calculateTotal(cart);
+    printCart(cart);
+}
 
 function open_modal() {
     applyPromotionsCart(cart);
-    calculateTotal();
-    printCart();
+    calculateTotal(cart);
+    printCart(cart);
+}
+
+function updateCartCount(action) {
+    if (CART_COUNT_ACTIONS.ADD === action) cartElements++;
+    if (CART_COUNT_ACTIONS.SUBSTRACT === action) cartElements--;
+    if (CART_COUNT_ACTIONS.RESET === action) cartElements = 0;
+
+    const $totalCart = document.getElementById("count_product");
+    $totalCart.innerText = cartElements;
 }
