@@ -1,0 +1,12 @@
+{
+  "name": "sprint2_2",
+  "version": "1.0.0",
+  "description": "Sprint 2 del bootcamp de Angular del It Academy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
