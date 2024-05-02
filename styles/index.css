@@ -11844,5 +11844,39 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.card {
+  box-shadow: 0 2px 6px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+  display: flex;
+  border-radius: 8px;
+  justify-content: center;
+  margin: auto;
+  border: none;
+}
+.card__imgContainer {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  position: relative;
+}
+.card__imgContainer::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 85%, rgb(255, 255, 255));
+}
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card .btn {
+  width: 100%;
+}
 
 /*# sourceMappingURL=index.css.map */
