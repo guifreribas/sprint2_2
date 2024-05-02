@@ -150,7 +150,7 @@ function printCart(cart) {
 								<td>$${item.price}</td>
 								<td>${item.quantity}</td>
 								<td>$${itemTotal.toFixed(2)}</td>
-                                <td><button onclick="removeFromCart('${item.id}')">Eliminar</button></td>
+                                <td><button type="button" class="btn-close" onclick="removeFromCart('${item.id}')" aria-label="Close"></button></td>
 							</tr>`;
         list.push(itemChild);
     });

@@ -3,6 +3,8 @@
 @import "../node_modules/bootstrap/scss/variables.scss";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
 
 .card {
     box-shadow: 0 2px 6px 4px rgba(0, 0, 0, 0.1);
@@ -42,4 +44,54 @@
     & .btn {
         width: 100%;
     }
+}
+
+.categorySection {
+
+    & h2 {
+        font-family: "Oswald", sans-serif;
+        text-transform: uppercase;
+        margin: auto;
+        padding: 64px 56px 24px;
+        border-top: 1px solid rgba(var(--bs-dark-rgb), 0.1);
+        box-shadow: 0 -10px 10px -10px rgba(var(--bs-dark-rgb), 0.1);
+    }
+}
+
+
+
+
+
+.cart {
+    padding: 32px;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 32px;
+    }
+
+    & h3 {
+        font-family: "Oswald", sans-serif;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+    }
+
+    & table {
+        & thead {
+            & tr {
+                text-transform: uppercase;
+
+                & small {
+                    text-transform: none;
+                }
+            }
+        }
+    }
+
+    & a {
+        padding: 8px 32px;
+        font-size: 1rem;
+    }
+
 }

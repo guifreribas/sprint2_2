@@ -4,6 +4,7 @@
  * Copyright 2011-2024 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 :root,
 [data-bs-theme=light] {
   --bs-blue: #0d6efd;
@@ -11877,6 +11878,39 @@ textarea.form-control-lg {
 }
 .card .btn {
   width: 100%;
+}
+
+.categorySection h2, .categorySection .h2 {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  margin: auto;
+  padding: 64px 56px 24px;
+  border-top: 1px solid rgba(var(--bs-dark-rgb), 0.1);
+  box-shadow: 0 -10px 10px -10px rgba(var(--bs-dark-rgb), 0.1);
+}
+
+.cart {
+  padding: 32px;
+}
+.cart__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 32px;
+}
+.cart h3, .cart .h3 {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.cart table thead tr {
+  text-transform: uppercase;
+}
+.cart table thead tr small, .cart table thead tr .small {
+  text-transform: none;
+}
+.cart a {
+  padding: 8px 32px;
+  font-size: 1rem;
 }
 
 /*# sourceMappingURL=index.css.map */

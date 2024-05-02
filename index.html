@@ -68,7 +68,7 @@
 		</div>
 	</header>
 	<!-- Section-->
-	<section class="pt-5" id="grocery">
+	<section class="categorySection" id="grocery">
 		<h2 class="text-center"><i class="fas fa-shopping-basket pe-3"></i>Grocery</h2>
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2  row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -133,7 +133,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="pt-5" id="beauty">
+	<section class="pt-5 categorySection" id="beauty">
 		<h2 class="text-center"><i class="fas fa-heart pe-3"></i>Beauty</h2>
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -194,7 +194,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="pt-5" id="clothes">
+	<section class="pt-5 categorySection" id="clothes">
 		<h2 class="text-center"><i class="fas fa-tshirt pe-3"></i>Clothes</h2>
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -269,10 +269,10 @@
 	</footer>
 
 	<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-cart-arrow-down"></i> My Cart</h5>
+		<div class="modal-dialog modal-lg  cart__outdoorContainer">
+			<div class="modal-content container-fluid  cart">
+				<div class="cart__header">
+					<h5 class="cart__title" id="exampleModalLabel"><i class="fas fa-cart-arrow-down"></i> My Cart</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
@@ -284,6 +284,7 @@
 								<th scope="col">Price</th>
 								<th scope="col">Qty.</th>
 								<th scope="col">Total <small>(with discount)</small></th>
+								<th scope="col">Remove</th>
 							</tr>
 						</thead>
 						<tbody id="cart_list">
